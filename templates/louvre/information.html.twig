@@ -1,13 +1,17 @@
 {% extends "base.html.twig" %}
 
+{% form_theme formStep2 'bootstrap_4_layout.html.twig' %}
+
 {% block body %}
     <h1>Information de chaque billets</h1>
 
-    <p>Blalvl vlaav lavanlijhb vaojh iuoghva bqjbcnqd bdhbqdpiuah ouhgqidq iujqghd qokj hqdqojdbq ijiqgdqaîaj phjâd a^à h adaîha 
-    ijhahgdaoi uha id iudgh ad açoudh ao adopiad  adpouh a iudhaod oqdôqdâ îah aodbn ni a^dpja ih adaokh adîhd aojdha daoihda$^daoihda
-    daidhnbadh okahd azdokhj ôaidh a^diaj  ^paihd a çdugazdaz^d a^qknqs qîp kpqsjd aâzdd</p>
+    {{ form_start(formStep2) }}
 
-    <p>Blalvl vlaav lavanlijhb vaojh iuoghva bqjbcnqd bdhbqdpiuah ouhgqidq iujqghd qokj hqdqojdbq ijiqgdqaîaj phjâd a^à h adaîha 
-    ijhahgdaoi uha id iudgh ad açoudh ao adopiad  adpouh a iudhaod oqdôqdâ îah aodbn ni a^dpja ih adaokh adîhd aojdha daoihda$^daoihda
-    daidhnbadh okahd azdokhj ôaidh a^diaj  ^paihd a çdugazdaz^d a^qknqs qîp kpqsjd</p>
+    {{ form_row(formStep2.lastname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
+    {{ form_row(formStep2.name, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Prénom'}}) }}
+    {{ form_row(formStep2.birthdayDate, {'label' : 'Date de naissance'}) }}
+    {{ form_row(formStep2.save, {'label' : 'Envoyer'}) }}
+
+    {{ form_end(formStep2) }}
+
 {% endblock %}

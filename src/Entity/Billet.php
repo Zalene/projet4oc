@@ -7,6 +7,9 @@ class Billet
     protected $nbBillet;
     protected $date;
     protected $typeBillet;
+    protected $lastname;
+    protected $name;
+    protected $birthdayDate;
 
     public function getNbBillet()
     {
@@ -36,5 +39,35 @@ class Billet
     public function setTypeBillet($typeBillet)
     {
         $this->typeBillet = $typeBillet;
+    }
+
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getBirthdayDate()
+    {
+        return $this->birthdayDate;
+    }
+
+    public function setBirthdayDate($birthdayDate)
+    {
+        $this->birthdayDate = $birthdayDate;
     }
 }

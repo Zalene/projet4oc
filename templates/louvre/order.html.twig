@@ -1,10 +1,17 @@
 {% extends "base.html.twig" %}
 
-
+{% form_theme formStep1 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
     <h1>Commande des billets</h1>
 
-    {{ form(formStep1) }}
+    {{ form_start(formStep1) }}
+
+    {{ form_row(formStep1.nbBillet, {'label' : 'Nombre de billets', 'attr' : {'placeholder' : '1'}}) }}
+    {{ form_row(formStep1.typeBillet, {'label' : 'Type de billet'}) }}
+    {{ form_row(formStep1.date, {'label' : 'Date de la visite'}) }}
+    {{ form_row(formStep1.save, {'label' : 'Envoyer'}) }}
+
+    {{ form_end(formStep1) }}
 
 {% endblock %}
