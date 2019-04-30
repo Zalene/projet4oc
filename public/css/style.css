@@ -1,3 +1,28 @@
-.navbar{
+.navbar {
     padding: 1px 8px 1px 8px;
+}
+
+.background {
+    background: white;
+    /*background: url("../img/pyramide.jpg") no-repeat center fixed;
+    margin: 0;
+    padding: 0;
+    -webkit-background-size: cover;
+    background-size: cover;*/
+}
+
+.homePage {
+    /*background-color: rgb(143, 143, 143);*/
+}
+
+.homePage h3, p {
+    color: black;
+}
+
+.menu-order {
+    margin-top: 15px;
+}
+
+.progress {
+    margin-bottom: 15px;
 }
