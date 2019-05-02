@@ -1,18 +1,26 @@
+html, body {
+    height: 100%;
+}
+
 .navbar {
     padding: 1px 8px 1px 8px;
 }
 
 .background {
     background: white;
-    /*background: url("../img/pyramide.jpg") no-repeat center fixed;
+}
+
+.pictureHome {
+    background: url("../img/pyramide.jpg") no-repeat center;
     margin: 0;
     padding: 0;
     -webkit-background-size: cover;
-    background-size: cover;*/
+    background-size: cover;
 }
 
-.homePage {
-    /*background-color: rgb(143, 143, 143);*/
+.pictureHome p {
+    color:white;
+    font-size: 50px;
 }
 
 .homePage h3, p {

@@ -29,7 +29,7 @@ class Billet
     /**
      * @ORM\Column(type="datetime")
      */
-    private $birthdayDate;
+    private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -37,7 +37,7 @@ class Billet
     private $country;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $reducedPrice;
 
@@ -76,14 +76,14 @@ class Billet
         return $this;
     }
 
-    public function getBirthdayDate(): ?\DateTimeInterface
+    public function getBirthday(): ?\DateTimeInterface
     {
-        return $this->birthdayDate;
+        return $this->birthday;
     }
 
-    public function setBirthdayDate(\DateTimeInterface $birthdayDate): self
+    public function setBirthday(\DateTimeInterface $birthday): self
     {
-        $this->birthdayDate = $birthdayDate;
+        $this->birthday = $birthday;
 
         return $this;
     }
@@ -100,12 +100,12 @@ class Billet
         return $this;
     }
 
-    public function getReducedPrice(): ?string
+    public function getReducedPrice(): ?int
     {
         return $this->reducedPrice;
     }
 
-    public function setReducedPrice(?string $reducedPrice): self
+    public function setReducedPrice(int $reducedPrice): self
     {
         $this->reducedPrice = $reducedPrice;
 

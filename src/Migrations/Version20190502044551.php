@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190430160412 extends AbstractMigration
+final class Version20190502044551 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20190430160412 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE billet ADD buyer_id INT NOT NULL');
-        $this->addSql('ALTER TABLE billet ADD CONSTRAINT FK_1F034AF66C755722 FOREIGN KEY (buyer_id) REFERENCES buyer (id)');
-        $this->addSql('CREATE INDEX IDX_1F034AF66C755722 ON billet (buyer_id)');
+        $this->addSql('ALTER TABLE buyer CHANGE email email VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20190430160412 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE billet DROP FOREIGN KEY FK_1F034AF66C755722');
-        $this->addSql('DROP INDEX IDX_1F034AF66C755722 ON billet');
-        $this->addSql('ALTER TABLE billet DROP buyer_id');
+        $this->addSql('ALTER TABLE buyer CHANGE email email VARCHAR(255) DEFAULT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

@@ -34,7 +34,7 @@ class Buyer
     private $createdAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
@@ -94,7 +94,7 @@ class Buyer
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 

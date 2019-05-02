@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager; //Pour rendre persistent des valeurs de mon form
+use Doctrine\Common\Persistence\ObjectManager; //Pour rendre persistent des valeurs de mes forms
 
 use App\Entity\Billet;
 use App\Entity\Buyer;
@@ -42,14 +42,14 @@ class LouvreController extends AbstractController
      */
     public function order(Request $request, ObjectManager $manager)
     {
-        $billet = new Buyer();
-        $billet->setCreatedAt(new \DateTime('tomorrow'));
+        $buyer = new Buyer();
+        $buyer->setCreatedAt(new \DateTime('tomorrow'));
         $choices = [
             'Journée' => 'valeur1',
             'Demi-journée' => 'valeur2'
         ];
 
-        $form = $this->createFormBuilder($billet)
+        $form = $this->createFormBuilder($buyer)
                      ->add('nbBillet', ChoiceType::class, [
                         'choices' => [
                             '0','1','2','3','4','5','6','7','8','9','10'
@@ -60,40 +60,39 @@ class LouvreController extends AbstractController
                                 'choices' => $choices,
                                 'expanded' => false,                            
                      ])
-                     //->add('typeBillet', ChoiceType::class, [
-                        //'choices' => [
-                            //'Journée' => true,
-                            //'Demi-journée' => false,
-                        //]
-                     //])
                      ->add('createdAt', DateType::class, [
                         'format' => 'ddMMyyyy',
                      ])
                      ->add('save', SubmitType::class)
                      ->getForm();
 
-        $form->handleRequest($request);
+        if (isset($form)) { //(isset($form.nbBillet)&& !==(0))
+            for ($i=1; $i<='$form.nbBillet'; $i++) {
+
+                $billet = new Billet();
+
+                $formBillet = $this->createFormBuilder($billet)
+                             ->add('firstname')
+                             ->add('name')
+                             ->add('birthdayDate', BirthdayType::class, [
+                                'format' => 'ddMMyyyy',
+                             ])
+                             ->add('country')
+                             ->add('reducedPrice')
+                             ->getForm();
+
+                return $this->render('louvre/order.html.twig', [
+                'formBillet' => $formBillet->createView()
+                ]);
+            }
+        }
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $billet = $form->getCreatedAt();
+            $buyer = $form->getCreatedAt();
 
             return $this->redirectToRoute("order_step_2");
         }
-
-        $formBillet = $this->createFormBuilder($billet)
-                     ->add('email', TextType::class)
-                     ->add('typeBillet', ChoiceType::class, [
-                            'choices' => [
-                                'Journée' => true,
-                                'Demi-journée' => false,
-                            ]
-                     ])
-                     ->add('createdAt', DateType::class, [
-                        'format' => 'ddMMyyyy',
-                     ])
-                     ->add('save', SubmitType::class)
-                     ->getForm();
 
         $form->handleRequest($request);
 
