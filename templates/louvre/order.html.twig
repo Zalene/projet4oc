@@ -7,10 +7,10 @@
     <div class='menu-order'>
         <ul class="nav nav-tabs row">
             <li class="nav-item mx-auto col-xs-4">
-                <a class="nav-link active" data-toggle="tab" href="#home">Commande</a>
+                <a class="nav-link active" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
             </li>
             <li class="nav-item mx-auto col-xs-4">
-                <a class="nav-link active" data-toggle="tab" href="#home">Informations</a>
+                <a class="nav-link disabled" data-toggle="tab" href="#home">Informations</a>
             </li>
             <li class="nav-item mx-auto col-xs-4">
                 <a class="nav-link disabled" href="#">Paiement</a>
@@ -49,6 +49,9 @@
                 <div class='col-sm-12 col-md-6'>
                     {{ form_row(formStep1.typeBillet, {'label' : 'Type de billet'}) }}
                 </div>
+                <div class='col-sm-12 col-md-6'>
+                    {{ form_row(formStep1.email, {'label' : 'Votre Email', 'attr' : {'placeholder' : 'exemple@gmail.com'}}) }}
+                </div>
             </div>
             
         </div>
@@ -58,7 +61,7 @@
             <p>Date de la visite</p>
             <p>Type de billet / voir horaires</p>
             <p>Nombre de billets</p>
-            {{ form_row(formStep1.save, {'label' : 'Envoyer'}) }}
+            {{ form_row(formStep1.save, {'label' : 'Suivant'}) }}
 
             {{ form_end(formStep1) }}
         </div>
