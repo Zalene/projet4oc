@@ -6,6 +6,10 @@ html, body {
     padding: 1px 8px 1px 8px;
 }
 
+.bg-primary {
+    background-color: black !important;
+}
+
 .background {
     background: white;
 }

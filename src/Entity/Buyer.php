@@ -43,8 +43,15 @@ class Buyer
      */
     private $billets;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $visitDay;
+
     public function __construct()
     {
+        $this->createdAt = new \DateTime;
+        $this->visitDay = new \DateTime('tomorrow');
         $this->billets = new ArrayCollection();
     }
 
@@ -128,6 +135,18 @@ class Buyer
                 $billet->setBuyer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVisitDay(): ?\DateTimeInterface
+    {
+        return $this->visitDay;
+    }
+
+    public function setVisitDay(\DateTimeInterface $visitDay): self
+    {
+        $this->visitDay = $visitDay;
 
         return $this;
     }
