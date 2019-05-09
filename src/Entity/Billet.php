@@ -37,7 +37,7 @@ class Billet
     private $country;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $reducedPrice;
 

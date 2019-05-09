@@ -43,12 +43,8 @@ class LouvreController extends AbstractController
     public function order(Request $request, ObjectManager $manager)
     {
         $sessionBag = $request->getSession();
-
-        //$buyer = $sessionBag->get('buyer', new Buyer());
         
         $buyer = new Buyer();
-        //$buyer->setCreatedAt(new \DateTime());
-        //$buyer->setVisitDay(new \DateTime('tomorrow'));
 
         $form = $this->createForm(BuyerType::class, $buyer);
 
@@ -57,9 +53,6 @@ class LouvreController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $sessionBag->set('buyer', $buyer);
-
-            //var_dump($sessionBag);
-            //die;
 
             //$manager->persist($buyer);
             //$manager->flush();
@@ -89,23 +82,16 @@ class LouvreController extends AbstractController
         for ($i=0;$i<$nbVisitor;$i++){
             $billet[] = new Billet();
         }
-        
-        //$buyer = new Billet();
-
-        //$form = $this->createForm(BilletType::class, $buyer);
 
         $form = $this ->get('form.factory') ->create(CollectionType::class, $billet, ['entry_type' => BilletType::class]);
-
-        //$form = $this->createForm(BilletType::class, $billet);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $manager->persist($buyer);
-            $manager->flush();
+            
 
-            //$buyer = $form->getCreatedAt();
+            //$sessionBag->set('buyer', $buyer);
 
             return $this->redirectToRoute("order_step_3");
         }

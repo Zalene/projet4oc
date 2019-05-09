@@ -32,7 +32,7 @@
             </div>
 
             <div class='col-xs-12'>
-                <h3>Vos billets</h3>
+                <h3>Votre réservation</h3>
             </div>
 
             {{ form_start(formStep1) }}
@@ -61,7 +61,8 @@
             <p>Date de la visite</p>
             <p>Type de billet / voir horaires</p>
             <p>Nombre de billets</p>
-            {{ form_row(formStep1.save, {'label' : 'Suivant'}) }}
+
+            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">Passer aux informations</button>
 
             {{ form_end(formStep1) }}
         </div>

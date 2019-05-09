@@ -37,26 +37,29 @@
 
             {% for i in 1..nbVisitor %}
             {{ form_start(formStep2) }}
-            <div class='row'>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep2[i-1].firstname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
+            <div class="billet">
+                <div class='row'>
+                    <h4 class='col-12'>Billet n°1</h4>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep2[i-1].firstname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
+                    </div>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep2[i-1].name, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Prénom'}}) }}
+                    </div>
                 </div>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep2[i-1].name, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Prénom'}}) }}
+                <div class='row'>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep2[i-1].birthday, {'label' : 'Date de naissance'}) }}
+                    </div>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep2[i-1].country, {'label' : 'Pays'}) }}
+                    </div>
                 </div>
-            </div>
-            <div class='row'>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep2[i-1].birthday, {'label' : 'Date de naissance'}) }}
-                </div>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep2[i-1].country, {'label' : 'Pays'}) }}
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep2[i-1].reducedPrice, {'label' : 'Tarif réduit'}) }}
-                    <p class="text-secondary">* Justificatif nécessaire le jour de la visite</p>
+                <div class='row'>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep2[i-1].reducedPrice, {'label' : 'Tarif réduit'}) }}
+                        <p class="text-secondary">* Justificatif nécessaire le jour de la visite</p>
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -67,8 +70,9 @@
             <p>Date de la visite</p>
             <p>Type de billet / voir horaires</p>
             <p>Nombre de billets</p>
-            {#{{ form_row(formStep2.save, {'label' : 'Suivant'}) }}#}
-
+            
+            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">Passer au paiement</button>
+            
             {{ form_end(formStep2) }}
         </div>
     </div>

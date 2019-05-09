@@ -9,7 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class BuyerType extends AbstractType
@@ -46,7 +45,7 @@ class BuyerType extends AbstractType
                 'attr' => ['aria-describedby' => 'basic-addon1']
             ])
             
-            ->add('save', SubmitType::class)
+            
         ;
     }
 

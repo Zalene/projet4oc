@@ -38,3 +38,10 @@ html, body {
 .progress {
     margin-bottom: 15px;
 }
+
+.billet {
+    border:rgba(0,0,0,0.125) 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}

@@ -7,8 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class BilletType extends AbstractType
 {
@@ -18,12 +19,14 @@ class BilletType extends AbstractType
             ->add('firstname')
             ->add('name')
             ->add('birthday', BirthdayType::class, [
+                'html5' => 'false',
                 'format' => 'ddMMyyyy',
+                'attr' => ['class' => 'datepicker-tickets']
              ])
-            ->add('country')
-            ->add('reducedPrice')
-            ->add('save', SubmitType::class)
-        ;
+            ->add('country', CountryType::class)
+            ->add('reducedPrice', CheckboxType::class, [
+                'required' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
