@@ -89,7 +89,8 @@ class LouvreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            
+            var_dump($billet);
+            die;
 
             //$sessionBag->set('buyer', $buyer);
 

@@ -48,6 +48,16 @@ class Buyer
      */
     private $visitDay;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $code;
+
+    /**
+     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+     */
+    private $total;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
@@ -148,6 +158,55 @@ class Buyer
     {
         $this->visitDay = $visitDay;
 
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): self
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Défini un code de réservation aléatoire
+     */
+    public function generateCode(): self
+    {
+        $alph = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $code = substr(str_shuffle($alph), 0, rand(5,25));
+        $this->code = $code;
+        return $this;
+    }
+
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    public function setTotal($total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Calcul le prix total de la commande
+     */
+    public function calcTotal(): self
+    {
+        $total=[0];
+        foreach ($this->getBillets() as $billet)
+        {
+            $total[] = $billet->getPrice();
+        }
+        $this->total = array_sum($total);
         return $this;
     }
 }

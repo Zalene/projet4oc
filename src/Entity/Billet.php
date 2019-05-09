@@ -88,6 +88,16 @@ class Billet
         return $this;
     }
 
+    /**
+     * @param \DateTime $date
+     * @return int
+     */
+    public function getAge(\DateTime $date)
+    {
+        //Calcul de l'age de la personne
+        return $this->getBirthday()->diff ($date)->y;
+    }
+
     public function getCountry(): ?string
     {
         return $this->country;

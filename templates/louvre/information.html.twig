@@ -39,7 +39,7 @@
             {{ form_start(formStep2) }}
             <div class="billet">
                 <div class='row'>
-                    <h4 class='col-12'>Billet n°1</h4>
+                    <h4 class='col-12'>Billet n°{{ loop.index }}</h4>
                     <div class='col-sm-12 col-md-6'>
                         {{ form_row(formStep2[i-1].firstname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
                     </div>
