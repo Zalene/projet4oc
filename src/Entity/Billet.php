@@ -47,6 +47,11 @@ class Billet
      */
     private $buyer;
 
+    /**
+     * @ORM\Column(type="decimal", precision=2, scale=0, nullable=true)
+     */
+    private $price;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -130,6 +135,18 @@ class Billet
     public function setBuyer(?Buyer $buyer): self
     {
         $this->buyer = $buyer;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
