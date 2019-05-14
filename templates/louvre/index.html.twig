@@ -5,12 +5,12 @@
 <div class='background h-100'>
     <div class="pictureHome h-100">
         <div class="container h-100">
-            <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-12">
-                    <p class="text-center">Bienvenue sur le site du musée du louvre</p>
+            <div class="row h-100 d-flex justify-content-center align-items-center">
+                <div class="col-12 d-flex justify-content-center">
+                    <p class="text-center">Bienvenue sur le site de billetterie du musée du louvre</p>
                 </div>
 
-                <div class="col-offset-3 col-6 col-offset-sm-4 col-sm-4 col-offset-md-5 col-md-2">
+                <div class="col-offset-3 col-6 col-offset-sm-4 col-sm-4 col-offset-md-5 col-md-2 align-self-baseline">
                     <a href={{ path('order_step_1') }}><button type="button" class="btn btn-primary btn-lg">Réserver un billet</button></a>
                 </div>
             </div>
@@ -18,45 +18,39 @@
     </div>
 
     <div class="container homePage">
-        <div>
-            <h3>Horaires du musée du Louvre :</h3>
-
-            <p>Lundi : 9 h - 18 h</p>
-            <p>Mardi : Fermé</p>
-            <p>Mercredi : 9 h - 21h45</p>
-            <p>Jeudi : 9 h - 18 h</p>
-            <p>Vendredi : 9 h - 21h45</p>
-            <p>Samedi : 9 h - 18 h (jusqu'à 21h45 le premier samedi de chaque mois)</p>
-            <p>Dimanche : 9 h - 18 h</p>
-
-            <p>L'évacuation des salles débute à 17 h 30 ou 21 h 30 les jours de nocturne.</p>
+        <div class="row justify-content-center">
+            <div class="row">
+                <div class="col-12 border-price">
+                    <table class="table-price">
+                        <tbody>
+                            <tr>
+                                <th>Tarif Normal</th>
+                                <th>Tarif Enfant</th>
+                                <th>Tarif Senior</th>
+                                <th>Tarif Réduit</th>
+                            </tr>
+                            <tr class="condition">
+                                <td>(A partir de 12 ans)</td>
+                                <td>(4 à 12 ans) (Gratuit avant 4 ans)</td>
+                                <td>(A partir de 60 ans)</td>
+                                <td>(Étudiant(e), militaire, employé(e) du Musée ou du Ministère de la Culture)</td>
+                            </tr>
+                            <tr class="price">
+                                <td>16€</td>
+                                <td>8€</td>
+                                <td>12€</td>
+                                <td>10€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
-        <div>
-            <h3>Tarifs</h3>
-
-            <p>Tarif Normal: (A partir de 12 ans) 16€</p>
-            <p>Tarif Enfant: (4 à 12 ans) (Gratuit avant 4 ans) 8€</p>
-            <p>Tarif Senior: (A partir de 60 ans) 12€</p>
-            <p>Tarif Réduit: (Étudiant(e), militaire, employé(e) du Musée ou du Ministère de la Culture) 10€</p>
-        </div>
-
-        <div>
-            <h3>Contact</h3>
-
-            <p>Musée du Louvre</p>
-            <p>75058 Paris CEDEX 01</p>
-            <p>France</p>
-            <p>+33 (0)1 40 20 53 17</p>
-            <p>info@louvre.fr</p>
-        </div>
-
-        <div>
-            <h3>Réseaux Sociaux</h3>
-
-            <p>Facebook / Twitter / Google+ / Instagram</p>
-        </div>
-
     </div>
+
+    {% include 'parts/footer.html.twig' %}
+
 </div>
 {% endblock %}
+
+

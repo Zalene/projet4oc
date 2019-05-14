@@ -19,9 +19,7 @@ class BilletType extends AbstractType
             ->add('firstname')
             ->add('name')
             ->add('birthday', BirthdayType::class, [
-                'html5' => 'false',
-                'format' => 'ddMMyyyy',
-                'attr' => ['class' => 'datepicker-tickets']
+                'format' => 'ddMMyyyy'
              ])
             ->add('country', CountryType::class)
             ->add('reducedPrice', CheckboxType::class, [

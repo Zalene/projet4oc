@@ -4,18 +4,11 @@ namespace App\Controller;
 
 
 use App\Entity\Buyer;
-
-//use Symfony\Component\HttpFoundation\Response; //???
-//use Symfony\Component\Validator\Validator\ValidatorInterface; //Pour la validation des champs de mes forms
-//use Symfony\Component\Translation\TranslatorInterface; //Pour passer le site en Anglais
-
-//use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 use App\Entity\Billet;
 use App\Form\BuyerType;
 use App\Form\BilletType;
-use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -89,8 +82,14 @@ class LouvreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            var_dump($billet);
-            die;
+            $sessionBag->set('buyer', $buyer, 'billet', $billet);
+            
+            //$manager->persist($billet);
+            //$manager->flush();
+
+            //var_dump($billet);
+            //var_dump($sessionBag->get('billet'));
+            //die;
 
             //$sessionBag->set('buyer', $buyer);
 
@@ -109,8 +108,16 @@ class LouvreController extends AbstractController
     /**
      * @Route("/checkout", name="order_step_3")
      */
-    public function checkout()
+    public function checkout(Request $request, ObjectManager $manager)
     {   
+        $sessionBag = $request->getSession();
+        $buyer = $sessionBag->get('buyer');
+        $billet = $sessionBag->get('billet');
+
+        var_dump($buyer);
+        die;
+
+
         return $this->render('louvre/checkout.html.twig');
     }
 
