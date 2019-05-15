@@ -7,11 +7,11 @@
         <div class="container h-100">
             <div class="row h-100 d-flex justify-content-center align-items-center">
                 <div class="col-12 d-flex justify-content-center">
-                    <p class="text-center">Bienvenue sur le site de billetterie du musée du louvre</p>
+                    <p class="text-center">Bienvenue sur la billetterie du musée du louvre</p>
                 </div>
 
-                <div class="col-offset-3 col-6 col-offset-sm-4 col-sm-4 col-offset-md-5 col-md-2 align-self-baseline">
-                    <a href={{ path('order_step_1') }}><button type="button" class="btn btn-primary btn-lg">Réserver un billet</button></a>
+                <div class="col-offset-3 col-6 col-offset-sm-4 col-sm-4 col-offset-lg-5 col-lg-2 align-self-baseline">
+                    <a href={{ path('order_step_1') }}><button type="submit" name="submit" class="btn btn-primary btn-lg btn-block btn-std">Réserver un billet</button></a>
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
                             </tr>
                             <tr class="condition">
                                 <td>(A partir de 12 ans)</td>
-                                <td>(4 à 12 ans) (Gratuit avant 4 ans)</td>
+                                <td>(4 à 12 ans) <br> (Gratuit avant 4 ans)</td>
                                 <td>(A partir de 60 ans)</td>
                                 <td>(Étudiant(e), militaire, employé(e) du Musée ou du Ministère de la Culture)</td>
                             </tr>
@@ -47,9 +47,9 @@
             </div>
         </div>
     </div>
-
+    <div>
     {% include 'parts/footer.html.twig' %}
-
+    </div>
 </div>
 {% endblock %}
 

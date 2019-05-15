@@ -47,6 +47,9 @@ class LouvreController extends AbstractController
 
             $sessionBag->set('buyer', $buyer);
 
+            //var_dump($sessionBag->get('buyer'));
+            //die;
+
             //$manager->persist($buyer);
             //$manager->flush();
 
@@ -84,11 +87,11 @@ class LouvreController extends AbstractController
 
             $sessionBag->set('buyer', $buyer, 'billet', $billet);
             
-            //$manager->persist($billet);
-            //$manager->flush();
+            $manager->persist($billet);
+            $manager->flush();
 
             //var_dump($billet);
-            //var_dump($sessionBag->get('billet'));
+            //var_dump($sessionBag->get('buyer'));
             //die;
 
             //$sessionBag->set('buyer', $buyer);

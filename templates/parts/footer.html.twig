@@ -19,13 +19,12 @@
         <div class="col-6">
             <h3>Horaires d'ouverture :</h3>
 
-            <p>Lundi, jeudi, samedi* et dimanche : 9 h - 18 h <br>
-            Mercredi et vendredi : 9 h - 21h45 <br>
-            Mardi : Fermé</p>
-            <p>*jusqu'à 21h45 le premier samedi de chaque mois</p>
+            <p>Lundi au samedi : 9 h - 18 h <br>
+            Fermé le dimanche et jours feriés</p>
 
-            <p>L'évacuation des salles débute à 17 h 30 ou 21 h 30 les jours de nocturne.</p>
+            <p>L'évacuation des salles débute à 17 h 30.</p>
         </div>
     </div>
-    <p class="mb-1">© {{ 'now'|date('Y') }} Musée du Louvre</p>
+    <p class="mb-1">© {{ 'now'|date('Y') }} Musée du Louvre <br>
+    <a class="mentions" href={{ path('mentions') }}>Mentions Légales</a></p>
 </footer>

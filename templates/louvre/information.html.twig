@@ -3,78 +3,93 @@
 {% form_theme formStep2 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <div class='menu-order'>
-        <ul class="nav nav-tabs row">
-            <li class="nav-item mx-auto">
-                <a class="nav-link" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link active" data-toggle="tab" href={{ path('order_step_2') }}>Informations</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link disabled" href="#">Paiement</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link disabled" href="#">Confirmation</a>
-            </li>
-        </ul>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+<div>
+    <div class="container">
+        <div class='menu-order'>
+            <ul class="nav nav-tabs row">
+                <li class="nav-item mx-auto">
+                    <a class="nav-link" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link active" data-toggle="tab" href={{ path('order_step_2') }}>Informations</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" href="#">Paiement</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" href="#">Confirmation</a>
+                </li>
+            </ul>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-sm-12 col-md-9'>
+                <div class="alert alert-dismissible alert-warning col-xs-12">
+                    <p class="mb-0">Pour les tarifs réduits (étudiants, militaire, employé de musée, employé d'un service du ministère de la culture ...) , un justificatif vous sera demander le jour de la visite.</p>
+                </div>
+
+                <div class='col-xs-12'>
+                    <h3>Vos billets</h3>
+                </div>
+
+                {% for i in 1..nbVisitor %}
+                {{ form_start(formStep2) }}
+                <div class="billet">
+                    <div class='row'>
+                        <h4 class='col-12'>Billet n°{{ loop.index }}</h4>
+                        <div class='col-sm-12 col-md-6'>
+                            {{ form_row(formStep2[i-1].firstname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
+                        </div>
+                        <div class='col-sm-12 col-md-6'>
+                            {{ form_row(formStep2[i-1].name, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Prénom'}}) }}
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-12 col-md-6'>
+                            {{ form_row(formStep2[i-1].birthday, {'label' : 'Date de naissance'}) }}
+                        </div>
+                        <div class='col-sm-12 col-md-6'>
+                            {{ form_row(formStep2[i-1].country, {'label' : 'Pays'}) }}
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-12 col-md-6'>
+                            {{ form_row(formStep2[i-1].reducedPrice, {'label' : 'Tarif réduit'}) }}
+                            <p class="text-secondary">* Justificatif nécessaire le jour de la visite</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class='card mb-3 col-sm-12 col-md-3'>
+                <h5 class="card-header">Votre commande</h5>
+                <table class="table-card">
+                    <tbody>
+                        <tr>
+                            <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_date">Date</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_hours">Heure en fonction du billet</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_ticket">X (nbBillet)</strong></td>
+                        </tr>
+                    </tbody>
+                </table> {#{{ app.session.get('sessionBag').nbBillet }}#}
+                
+                <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Passer au paiement</button>
+                
+                {{ form_end(formStep2) }}
+            </div>
         </div>
     </div>
-
-    <div class='row'>
-        <div class='col-sm-12 col-md-9'>
-            <div class="alert alert-dismissible alert-warning col-xs-12">
-                <p class="mb-0">Pour les tarifs réduits (étudiants, militaire, employé de musée, employé d'un service du ministère de la culture ...) , un justificatif vous sera demander le jour de la visite.</p>
-            </div>
-
-            <div class='col-xs-12'>
-                <h3>Vos billets</h3>
-            </div>
-            
-
-            {% for i in 1..nbVisitor %}
-            {{ form_start(formStep2) }}
-            <div class="billet">
-                <div class='row'>
-                    <h4 class='col-12'>Billet n°{{ loop.index }}</h4>
-                    <div class='col-sm-12 col-md-6'>
-                        {{ form_row(formStep2[i-1].firstname, {'label' : 'Nom', 'attr' : {'placeholder' : 'Nom'}}) }}
-                    </div>
-                    <div class='col-sm-12 col-md-6'>
-                        {{ form_row(formStep2[i-1].name, {'label' : 'Prénom', 'attr' : {'placeholder' : 'Prénom'}}) }}
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm-12 col-md-6'>
-                        {{ form_row(formStep2[i-1].birthday, {'label' : 'Date de naissance'}) }}
-                    </div>
-                    <div class='col-sm-12 col-md-6'>
-                        {{ form_row(formStep2[i-1].country, {'label' : 'Pays'}) }}
-                    </div>
-                </div>
-                <div class='row'>
-                    <div class='col-sm-12 col-md-6'>
-                        {{ form_row(formStep2[i-1].reducedPrice, {'label' : 'Tarif réduit'}) }}
-                        <p class="text-secondary">* Justificatif nécessaire le jour de la visite</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class='card mb-3 col-sm-12 col-md-3'>
-            <h5 class="card-header">Votre commande</h5>
-            <p>Date de la visite</p>
-            <p>Type de billet / voir horaires</p>
-            <p>Nombre de billets</p>
-            
-            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">Passer au paiement</button>
-            
-            {{ form_end(formStep2) }}
-        </div>
-    </div>
+    {% include 'parts/footer.html.twig' %}
 </div>
 {% endblock %}

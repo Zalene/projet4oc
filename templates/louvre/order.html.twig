@@ -3,69 +3,86 @@
 {% form_theme formStep1 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-<div class="container">
-    <div class='menu-order'>
-        <ul class="nav nav-tabs row">
-            <li class="nav-item mx-auto">
-                <a class="nav-link active" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link disabled" data-toggle="tab" href={{ path('order_step_2') }}>Informations</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link disabled" href="#">Paiement</a>
-            </li>
-            <li class="nav-item mx-auto">
-                <a class="nav-link disabled" href="#">Confirmation</a>
-            </li>
-        </ul>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+<div class="h-100">
+    <div class="container">
+        <div class='menu-order'>
+            <ul class="nav nav-tabs row">
+                <li class="nav-item mx-auto">
+                    <a class="nav-link active" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" data-toggle="tab" href={{ path('order_step_2') }}>Informations</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" href="#">Paiement</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" href="#">Confirmation</a>
+                </li>
+            </ul>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"></div>
+            </div>
+        </div>
+
+        
+        <div class='row'>
+            <div class='col-sm-12 col-md-9'>
+                <div class="alert alert-dismissible alert-warning col-xs-12">
+                    <p class="mb-0">Pour les tarifs réduits (étudiants, militaire, employé de musée, employé d'un service du ministère de la culture ...) , un justificatif vous sera demander le jour de la visite.</p>
+                </div>
+
+                <div class='col-xs-12'>
+                    <h3>Votre réservation</h3>
+                </div>
+
+                {{ form_start(formStep1) }}
+                <div class='row'>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep1.visitDay, {'label' : 'Date de la visite'}) }}
+                    </div>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep1.nbBillet, {'label' : 'Nombre de billets', 'attr' : {'placeholder' : '0'}}) }}
+                        <p class="text-secondary">* Pour plus de 10 billets veuillez nous contacter par email</p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep1.typeBillet, {'label' : 'Type de billet'}) }}
+                    </div>
+                    <div class='col-sm-12 col-md-6'>
+                        {{ form_row(formStep1.email, {'label' : 'Votre Email', 'attr' : {'placeholder' : 'exemple@gmail.com'}}) }}
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class='card mb-3 col-sm-12 col-md-3'>
+                <h5 class="card-header">Votre commande</h5>
+
+                <table class="table-card">
+                    <tbody>
+                        <tr>
+                            <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_date">Date</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_hours">Heure en fonction du billet</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
+                            <td><strong class="pull-left resume_ticket">X (nbBillet)</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Passer aux billets</button>
+
+                {{ form_end(formStep1) }}
+            </div>
         </div>
     </div>
-
-    
-    <div class='row'>
-        <div class='col-sm-12 col-md-9'>
-            <div class="alert alert-dismissible alert-warning col-xs-12">
-                <p class="mb-0">Pour les tarifs réduits (étudiants, militaire, employé de musée, employé d'un service du ministère de la culture ...) , un justificatif vous sera demander le jour de la visite.</p>
-            </div>
-
-            <div class='col-xs-12'>
-                <h3>Votre réservation</h3>
-            </div>
-
-            {{ form_start(formStep1) }}
-            <div class='row'>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep1.visitDay, {'label' : 'Date de la visite'}) }}
-                </div>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep1.nbBillet, {'label' : 'Nombre de billets', 'attr' : {'placeholder' : '0'}}) }}
-                    <p class="text-secondary">* Pour plus de 10 billets veuillez nous contacter par email</p>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep1.typeBillet, {'label' : 'Type de billet'}) }}
-                </div>
-                <div class='col-sm-12 col-md-6'>
-                    {{ form_row(formStep1.email, {'label' : 'Votre Email', 'attr' : {'placeholder' : 'exemple@gmail.com'}}) }}
-                </div>
-            </div>
-            
-        </div>
-
-        <div class='card mb-3 col-sm-12 col-md-3'>
-            <h5 class="card-header">Votre commande</h5>
-            <p>Date de la visite</p>
-            <p>Type de billet / voir horaires</p>
-            <p>Nombre de billets</p>
-
-            <button class="btn btn-primary btn-lg btn-block" name="submit" type="submit">Passer aux informations</button>
-
-            {{ form_end(formStep1) }}
-        </div>
-    </div>
+    {% include 'parts/footer.html.twig' %}
 </div>
 {% endblock %}
