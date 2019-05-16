@@ -25,6 +25,7 @@ html, body {
 .pictureHome p {
     color:white;
     font-size: 50px;
+    text-shadow: 0.1em 0.1em 0.2em black;
 }
 
 .homePage h3, p {

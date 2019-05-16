@@ -8,6 +8,8 @@ use App\Entity\Billet;
 use App\Form\BuyerType;
 use App\Form\BilletType;
 
+use App\Services\OrderManager;
+
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,7 +35,7 @@ class LouvreController extends AbstractController
     /**
      * @Route("/order", name="order_step_1")
      */
-    public function order(Request $request, ObjectManager $manager)
+    public function order(Request $request)
     {
         $sessionBag = $request->getSession();
         
@@ -47,12 +49,6 @@ class LouvreController extends AbstractController
 
             $sessionBag->set('buyer', $buyer);
 
-            //var_dump($sessionBag->get('buyer'));
-            //die;
-
-            //$manager->persist($buyer);
-            //$manager->flush();
-
             return $this->redirectToRoute("order_step_2");
         }
 
@@ -64,7 +60,7 @@ class LouvreController extends AbstractController
     /**
      * @Route("/information", name="order_step_2")
      */
-    public function information(Request $request, ObjectManager $manager)
+    public function information(Request $request)
     {   
         $sessionBag = $request->getSession();
         $buyer = $sessionBag->get('buyer');
@@ -83,24 +79,14 @@ class LouvreController extends AbstractController
 
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sessionBag->set('buyer', $buyer, 'billet', $billet);
-            
-            $manager->persist($billet);
-            $manager->flush();
-
-            //var_dump($billet);
-            //var_dump($sessionBag->get('buyer'));
-            //die;
-
-            //$sessionBag->set('buyer', $buyer);
+            $sessionBag->set('buyer', $buyer);
+            $sessionBag->set('billet', $billet);
 
             return $this->redirectToRoute("order_step_3");
         }
-
-        //var_dump($form->createView());
-        //die;
 
         return $this->render('louvre/information.html.twig', [
             'formStep2' => $form->createView(),
@@ -117,11 +103,26 @@ class LouvreController extends AbstractController
         $buyer = $sessionBag->get('buyer');
         $billet = $sessionBag->get('billet');
 
-        var_dump($buyer);
-        die;
+        $form = $this->createForm(BuyerType::class, $buyer);
 
+        $form->handleRequest($request);
 
-        return $this->render('louvre/checkout.html.twig');
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $manager->persist($buyer);
+
+            foreach ($billet as $visitor) {
+                $manager->persist($visitor);
+            }
+
+            $manager->flush();
+
+            return $this->redirectToRoute("order_step_4");
+        }
+
+        return $this->render('louvre/checkout.html.twig', [
+            'formStep3' => $form->createView()
+        ]);
     }
 
     /**
