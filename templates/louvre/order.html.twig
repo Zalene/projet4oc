@@ -27,7 +27,7 @@
 
         
         <div class='row'>
-            <div class='col-sm-12 col-md-9'>
+            <div class='col-md-12 col-lg-9'>
                 <div class="alert alert-dismissible alert-warning col-xs-12">
                     <p class="mb-0">Pour les tarifs réduits (étudiants, militaire, employé de musée, employé d'un service du ministère de la culture ...) , un justificatif vous sera demander le jour de la visite.</p>
                 </div>
@@ -57,29 +57,31 @@
                 
             </div>
 
-            <div class='card mb-3 col-sm-12 col-md-3'>
-                <h5 class="card-header">Votre commande</h5>
+            <div class="mb-3 col-md-12 col-lg-3">
+                <div class='card'>
+                    <h5 class="card-header">Votre commande</h5>
 
-                <table class="table-card">
-                    <tbody>
-                        <tr>
-                            <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
-                            <td><strong class="pull-left resume_date">Date</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
-                            <td><strong class="pull-left resume_hours">Heure en fonction du billet</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
-                            <td><strong class="pull-left resume_ticket">X (nbBillet)</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table class="table-card">
+                        <tbody>
+                            <tr>
+                                <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
+                                <td><strong class="pull-left resume_date">Date</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
+                                <td><strong class="pull-left resume_hours">Heure en fonction du billet</strong></td>
+                            </tr>
+                            <tr>
+                                <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
+                                <td><strong class="pull-left resume_ticket">X (nbBillet)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Passer aux billets</button>
+                    <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Passer aux billets</button>
 
-                {{ form_end(formStep1) }}
+                    {{ form_end(formStep1) }}
+                </div>
             </div>
         </div>
     </div>

@@ -1,15 +1,105 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container">
-    <h1>Information de paiement</h1>
+<div>
+    <div class="container">
+        <div class='menu-order'>
+            <ul class="nav nav-tabs row">
+                <li class="nav-item mx-auto">
+                    <a class="nav-link" data-toggle="tab" href={{ path('order_step_1') }}>Commande</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link" data-toggle="tab" href={{ path('order_step_2') }}>Informations</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link active" href={{ path('order_step_3') }}>Paiement</a>
+                </li>
+                <li class="nav-item mx-auto">
+                    <a class="nav-link disabled" href="#">Confirmation</a>
+                </li>
+            </ul>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            </div>
+        </div>
 
-    <p>Blalvl vlaav lavanlijhb vaojh iuoghva bqjbcnqd bdhbqdpiuah ouhgqidq iujqghd qokj hqdqojdbq ijiqgdqaîaj phjâd a^à h adaîha 
-    ijhahgdaoi uha id iudgh ad açoudh ao adopiad  adpouh a iudhaod oqdôqdâ îah aodbn ni a^dpja ih adaokh adîhd aojdha daoihda$^daoihda
-    daidhnbadh okahd azdokhj ôaidh a^diaj  ^paihd a çdugazdaz^d a^qknqs qîp kpqsjd aâzdd</p>
+        <div class='row'>
+            <div class="col-md-12 col-lg-9">
+                <div class='col-12'>
+                    <h3>Votre paiement</h3>
+                </div>
+                <div class='col-12'>
+                    <form action="/charge" method="post" id="payment-form">
+                        <div class="form-row">
+                            <div class="order-label col-12">
+                                <div class="row col-12 justify-content-between">
+                                    <div class="text-order-label">
+                                        Carte de crédit
+                                    </div>
+                                    <div>
+                                        <span class="fas fa-credit-card"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                {#<label for="card-element" class="order-label">Carte de crédit</label>#}
+                                <div id="card-element" class="StripeElement StripeElement--empty"></div>
+                            </div>
+                        </div>
 
-    <p>Blalvl vlaav lavanlijhb vaojh iuoghva bqjbcnqd bdhbqdpiuah ouhgqidq iujqghd qokj hqdqojdbq ijiqgdqaîaj phjâd a^à h adaîha 
-    ijhahgdaoi uha id iudgh ad açoudh ao adopiad  adpouh a iudhaod oqdôqdâ îah aodbn ni a^dpja ih adaokh adîhd aojdha daoihda$^daoihda
-    daidhnbadh okahd azdokhj ôaidh a^diaj  ^paihd a çdugazdaz^d a^qknqs qîp kpqsjd</p>
+                        <!-- Used to display form errors. -->
+                        <div id="card-errors" role="alert" class="text-center"></div>
+                        {#<hr class="mb-4">#}
+                        {#<button class="btn btn-primary btn-lg btn-block" type="submit">Payer votre commande</button>#}
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mb-3 col-md-12 col-lg-3">
+                <div class='card'>
+                    <h5 class="card-header">Votre commande</h5>
+                    <table class="table-card">
+                        <tbody>
+                            <tr>
+                                <td><span class="fa fa-calendar"></span></td>
+                                <td><strong class="resume_date">Date</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="fa fa-clock"></span></td>
+                                <td><strong class="resume_hours">Heure en fonction du billet</strong></td>
+                            </tr>
+                            <tr>
+                                <td><span class="fa fa-ticket-alt"></span></td>
+                                <td><strong class="resume_ticket">X (nbBillet)</strong></td>
+                            </tr>
+                        </tbody>
+                    </table> {#{{ app.session.get('sessionBag').nbBillet }}#}
+                    
+                    <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Payer votre commande</button>
+
+                    <h5 class="card-header recap">Votre commande</h5>
+                    <table class="table-card">
+                        <tbody>
+                            <tr>
+                                <td><span class="fa fa-ticket-alt"></span></td>
+                                <td><strong>Demi-journée</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nom prénom</strong></td>
+                                <td><strong>18E</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 class="card-header recap">Total</h5>
+
+                    <p>50E</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'parts/footer.html.twig' %}
 </div>
 {% endblock %}
+
