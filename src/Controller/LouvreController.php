@@ -141,6 +141,9 @@ class LouvreController extends AbstractController
      */
     public function confirmation()
     {   
+        $buyer = $this->session->get('buyer');
+        $billet = $this->session->get('billet');
+
         return $this->render('louvre/confirmation.html.twig', [
             'buyer' => $buyer,
             'billet' => $billet

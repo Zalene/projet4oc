@@ -54,6 +54,10 @@ html, body {
     border-color: rgba(24, 188, 156, 0.9);
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .billet {
     border:rgba(0,0,0,0.125) 1px solid;
     border-radius: 5px;
@@ -100,6 +104,10 @@ html, body {
     font-size: 25px;
     font-weight: bold;
     color: #18BC9C;
+}
+
+.mention-block {
+    padding: 15px 0 60px 0;
 }
 
 .social {
