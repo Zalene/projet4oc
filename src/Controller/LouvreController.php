@@ -5,17 +5,20 @@ namespace App\Controller;
 
 use App\Entity\Buyer;
 use App\Entity\Billet;
+
 use App\Form\BuyerType;
 use App\Form\BilletType;
 
 use App\Services\OrderManager;
 use App\Services\MailerManager;
 
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
