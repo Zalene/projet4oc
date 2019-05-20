@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <!-- [if !mso]><! -->
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <!-- <![endif] -->
+    <meta name="viewport" content="width=device-width" />
+    <!-- [if !mso]><! -->
+  </head>
+  <body class="full-padding full-padding">
+    <!-- <![endif] -->
+    <table class="wrapper" cellpadding="0" cellspacing="0" role="presentation" style="background-color: whitesmoke;">
+      <tbody>
+        <tr>
+          <td>
+            <div>
+              <div class="preheader">
+                <div class="preheader__inner--inline">
+                  <!--[if (mso)|(IE)]> <table align="center" class="preheader" cellpadding="0" cellspacing="0" role="presentation"> <tr> <td style="width:280px;" valign="top"> <![endif]-->
+                  <div class="snippet"></div>
+                  <!--[if (mso)|(IE)]> </td> <td style="width:280px;" valign="top"> <![endif]-->
+                  <div class="webversion"></div>
+                  <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+                </div>
+              </div>
+              <div
+                class="header header--padded--inline"
+                id="emb-email-header-container"
+              >
+                <!--[if (mso)|(IE)]> <table align="center" class="header" cellpadding="0" cellspacing="0" role="presentation"> <tr> <td style="width:600px;"> <![endif]-->
+                <div
+                  class="logo emb-logo-margin-box"
+                  align="center"
+                  style="margin-top:35px;margin-bottom:20px;"
+                >
+                  <div align="center" id="emb-email-header" class="logo-center">
+                    <img
+                      src="https://www.louvre.fr/sites/all/themes/louvre/img/data/logo-louvre.jpg"
+                      alt="Musée du Louvre Paris France"
+                      width="215"
+                      style="max-width:215px"
+                    />
+                  </div>
+                </div>
+                <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+              </div>
+            </div>
+            <div>
+              <div
+                class="layout one-col fixed-width layout--inherit-padding--inline"
+              >
+                <div class="layout__inner" style="background-color:#fafafa;">
+                  <!--[if (mso)|(IE)]> <table align="center" cellpadding="0" cellspacing="0" role="presentation"> <tr class="layout-fixed-width" style="background-color:#fafafa;"> <td style="width:600px;" class="w560"> <![endif]-->
+                  <div class="column">
+                    <div class="image--inline" align="center">
+                      <img
+                        alt=""
+                        width="600"
+                        style="max-width:900px"
+                        src=""
+                        class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top"
+                      />
+                    </div>
+
+                    <div class="column__padding--inline">
+                      <div class="text--inline">
+                        <h1
+                          class="size-24"
+                          style="font-family:roboto, tahoma, sans-serif;font-size:20px;line-height:28px;text-align:center;"
+                          lang="x-size-24"
+                          xml:lang="x-size-24"
+                        >
+                          <span class="font-roboto">
+                            <font color="#15181f"
+                              >Confirmation de commande</font
+                            >
+                          </span>
+                        </h1>
+                        <p
+                          class="size-15"
+                          style="font-family:roboto, tahoma, sans-serif;font-size:15px;line-height:23px;text-align:center;"
+                          lang="x-size-15"
+                          xml:lang="x-size-15"
+                        >
+                          <span class="font-roboto"
+                            ><span style="color:#46474a"
+                              >Nous avons bien reçu votre commande d'un
+                              montant total de
+                              <strong>{{ buyer.total }}€</strong>.<br />Nous vous souhaitons une bonne visite
+                              le
+                              <strong
+                                >{{ buyer.visitDay|date("d/m/Y") }}</strong
+                              ></span
+                            ></span
+                          >
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="column__padding--inline">
+                      <div style="line-height:5px;font-size:1px;"></div>
+                    </div>
+
+                    <div class="column__padding--inline">
+                      <div class="divider"></div>
+                    </div>
+
+                    <div class="column__padding--inline">
+                      <div class="text--inline">
+                        <p
+                          class="size-15"
+                          style="font-family:roboto, tahoma, sans-serif;font-size:15px;line-height:23px;text-align:center;"
+                          lang="x-size-15"
+                          xml:lang="x-size-15"
+                        >
+                          <span class="font-roboto">
+                            <strong>Le(s) visiteur(s) </strong>
+                          </span>
+                        </p>
+                        <p
+                          class="size-15"
+                          style="font-family:roboto, tahoma, sans-serif;font-size:15px;line-height:23px;text-align:center;"
+                          lang="x-size-15"
+                          xml:lang="x-size-15"
+                        >
+                          <span class="font-roboto">
+                            {% for billet in buyer.billets %}
+                            {{ billet.name }} {{ billet.firstname }} - {%
+                            endfor %}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+                </div>
+              </div>
+
+              <div
+                class="layout one-col fixed-width layout--inherit-padding--inline"
+              >
+                <div class="layout__inner" style="background-color:#0a0906;">
+                  <!--[if (mso)|(IE)]> <table align="center" cellpadding="0" cellspacing="0" role="presentation"> <tr class="layout-fixed-width" style="background-color:#0a0906;"> <td style="width:600px;" class="w560"> <![endif]-->
+                  <div class="column">
+                    <div class="column__padding--inline">
+                      <div class="text--inline">
+                        <p
+                          class="size-22"
+                          style="font-family:roboto, tahoma, sans-serif;font-size:18px;line-height:26px;text-align:center;"
+                          lang="x-size-22"
+                          xml:lang="x-size-22"
+                        >
+                          <span class="font-roboto">
+                            <strong>
+                              <span style="color:#fafafa">{{
+                                buyer.code
+                              }}</span></strong
+                            >
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="column__padding--inline">
+                      <div class="text--inline">
+                        <p
+                          style="font-family:roboto, tahoma, sans-serif;text-align:center;color: #ffffff;"
+                        >
+                          <span class="font-roboto"
+                            >CODE DE RÉSERVATION À PRÉSENTER AU GUICHET</span
+                          >
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+                </div>
+              </div>
+
+              <div
+                class="layout one-col fixed-width layout--inherit-padding--inline"
+              >
+                <div class="layout__inner" style="background-color:#ffffff;">
+                  <!--[if (mso)|(IE)]> <table align="center" cellpadding="0" cellspacing="0" role="presentation"> <tr class="layout-fixed-width" style="background-color:#ffffff;"> <td style="width:600px;" class="w560"> <![endif]-->
+                  <div class="column">
+                    <div class="column__padding--inline">
+                      <div class="text--inline">
+                        <p
+                          class="size-15"
+                          style="font-size:15px;line-height:23px;text-align:center;"
+                          lang="x-size-15"
+                          xml:lang="x-size-15"
+                        >
+                          Merci pour votre confiance,<br />
+                          <strong>L'équipe du Musée du Louvre</strong>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+                </div>
+              </div>
+
+              <div
+                class="layout__separator--inline"
+                style="line-height:20px;font-size:20px;"
+              ></div>
+
+              <div>
+                <div class="layout sidebar--inline email-footer">
+                  <div class="layout__inner">
+                    <!--[if (mso)|(IE)]> <table align="center" cellpadding="0" cellspacing="0" role="presentation"> <tr class="layout-email-footer"> <td style="width:400px;" valign="top" class="w360"> <![endif]-->
+                    <div class="column wide">
+                      <div class="column__padding--inline">
+                        <div class="email-footer__address--inline">
+                          <div>
+                            Musée du Louvre<br />Rue de Rivoli,<br />75001 Paris
+                          </div>
+                        </div>
+                        <div class="email-footer__permission--inline"></div>
+                        <!--[if mso]> <![endif]-->
+                      </div>
+                    </div>
+                    <!--[if (mso)|(IE)]> </td> <td style="width:200px;" valign="top" class="w160"> <![endif]-->
+                    <div class="column narrow">
+                      <div class="column__padding--inline"></div>
+                    </div>
+                    <!--[if (mso)|(IE)]> </td> </tr> </table> <![endif]-->
+                  </div>
+                </div>
+              </div>
+              <div style="line-height:40px;font-size:40px;"></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

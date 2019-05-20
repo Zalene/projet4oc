@@ -80,7 +80,7 @@
                             </tr>
                             <tr>
                                 <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
-                                <td><strong class="pull-left resume_ticket">X (nbBillet)</strong></td>
+                                <td><strong class="pull-left resume_ticket">X {#{{app.session.get('nbBillet')}}#}</strong></td>
                             </tr>
                         </tbody>
                     </table> {#{{ app.session.get('sessionBag').nbBillet }}#}

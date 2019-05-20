@@ -9,24 +9,31 @@ use App\Form\BuyerType;
 use App\Form\BilletType;
 
 use App\Services\OrderManager;
+use App\Services\MailerManager;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
 class LouvreController extends AbstractController
 {
+
+    public function __construct(SessionInterface $session)
+    {
+        $this->session = $session;
+    }
+
     /**
      * @Route("/", name="accueil")
      */
-    public function index()
+    public function home()
     {   
         $directory = getcwd();
-        return $this->render('louvre/index.html.twig', [
+        return $this->render('louvre/home.html.twig', [
             'controller_name' => 'AccueilController',
             'directory' => $directory
         ]);
@@ -36,9 +43,7 @@ class LouvreController extends AbstractController
      * @Route("/order", name="order_step_1")
      */
     public function order(Request $request)
-    {
-        $sessionBag = $request->getSession();
-        
+    {        
         $buyer = new Buyer();
 
         $form = $this->createForm(BuyerType::class, $buyer);
@@ -47,9 +52,9 @@ class LouvreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sessionBag->set('buyer', $buyer);
+            $this->session->set('buyer', $buyer);
 
-            return $this->redirectToRoute("order_step_2");
+            return $this->redirectToRoute("order_step_2", array('buyer'));
         }
 
         return $this->render('louvre/order.html.twig', [
@@ -60,10 +65,11 @@ class LouvreController extends AbstractController
     /**
      * @Route("/information", name="order_step_2")
      */
-    public function information(Request $request)
+    public function information(Request $request, OrderManager $orderManager)
     {   
-        $sessionBag = $request->getSession();
-        $buyer = $sessionBag->get('buyer');
+        $buyer = $this->session->get('buyer');
+
+        //$nbBillet = $buyer->getNbBillet('nbBillet');
 
         if (!$buyer) {
             return $this->redirectToRoute('order_step_1');
@@ -82,8 +88,8 @@ class LouvreController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $sessionBag->set('buyer', $buyer);
-            $sessionBag->set('billet', $billet);
+            $this->session->set('buyer', $buyer);
+            $this->session->set('billet', $billet);
 
             return $this->redirectToRoute("order_step_3");
         }
@@ -97,11 +103,10 @@ class LouvreController extends AbstractController
     /**
      * @Route("/checkout", name="order_step_3")
      */
-    public function checkout(Request $request, ObjectManager $manager)
+    public function checkout(Request $request, ObjectManager $manager, OrderManager $orderManager, MailerManager $mailerManager)
     {   
-        $sessionBag = $request->getSession();
-        $buyer = $sessionBag->get('buyer');
-        $billet = $sessionBag->get('billet');
+        $buyer = $this->session->get('buyer');
+        $billet = $this->session->get('billet');
 
         $form = $this->createForm(BuyerType::class, $buyer);
 
