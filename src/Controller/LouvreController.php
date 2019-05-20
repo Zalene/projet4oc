@@ -57,7 +57,7 @@ class LouvreController extends AbstractController
 
             $this->session->set('buyer', $buyer);
 
-            return $this->redirectToRoute("order_step_2", array('buyer'));
+            return $this->redirectToRoute("order_step_2");
         }
 
         return $this->render('louvre/order.html.twig', [
@@ -99,7 +99,8 @@ class LouvreController extends AbstractController
 
         return $this->render('louvre/information.html.twig', [
             'formStep2' => $form->createView(),
-            'nbVisitor' => $nbVisitor
+            'nbVisitor' => $nbVisitor,
+            'buyer' => $buyer
         ]);
     }
 
@@ -129,7 +130,9 @@ class LouvreController extends AbstractController
         }
 
         return $this->render('louvre/checkout.html.twig', [
-            'formStep3' => $form->createView()
+            'formStep3' => $form->createView(),
+            'buyer' => $buyer,
+            'billet' => $billet
         ]);
     }
 
@@ -138,7 +141,10 @@ class LouvreController extends AbstractController
      */
     public function confirmation()
     {   
-        return $this->render('louvre/confirmation.html.twig');
+        return $this->render('louvre/confirmation.html.twig', [
+            'buyer' => $buyer,
+            'billet' => $billet
+        ]);
     }
 
     /**

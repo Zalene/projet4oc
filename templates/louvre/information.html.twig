@@ -72,7 +72,7 @@
                         <tbody>
                             <tr>
                                 <td class="small"><span class="fa fa-calendar" aria-hidden="true"></span></td>
-                                <td><strong class="pull-left resume_date">Date</strong></td>
+                                <td><strong class="pull-left resume_date">{{ buyer.visitDay|date('d/m/Y') }}</strong></td>
                             </tr>
                             <tr>
                                 <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
@@ -80,10 +80,10 @@
                             </tr>
                             <tr>
                                 <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>
-                                <td><strong class="pull-left resume_ticket">X {#{{app.session.get('nbBillet')}}#}</strong></td>
+                                <td><strong class="pull-left resume_ticket">X {{ buyer.nbBillet }}</strong></td>
                             </tr>
                         </tbody>
-                    </table> {#{{ app.session.get('sessionBag').nbBillet }}#}
+                    </table>
                     
                     <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Passer au paiement</button>
                     

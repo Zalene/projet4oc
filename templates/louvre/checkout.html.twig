@@ -62,7 +62,7 @@
                         <tbody>
                             <tr>
                                 <td><span class="fa fa-calendar"></span></td>
-                                <td><strong class="resume_date">Date</strong></td>
+                                <td><strong class="resume_date">{{ buyer.visitDay|date('d/m/Y') }}</strong></td>
                             </tr>
                             <tr>
                                 <td><span class="fa fa-clock"></span></td>
@@ -70,7 +70,7 @@
                             </tr>
                             <tr>
                                 <td><span class="fa fa-ticket-alt"></span></td>
-                                <td><strong class="resume_ticket">X (nbBillet)</strong></td>
+                                <td><strong class="resume_ticket">X {{ buyer.nbBillet }}</strong></td>
                             </tr>
                         </tbody>
                     </table> {#{{ app.session.get('sessionBag').nbBillet }}#}
