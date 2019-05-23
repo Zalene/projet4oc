@@ -72,8 +72,6 @@ class LouvreController extends AbstractController
     {   
         $buyer = $this->session->get('buyer');
 
-        //$nbBillet = $buyer->getNbBillet('nbBillet');
-
         if (!$buyer) {
             return $this->redirectToRoute('order_step_1');
         }
@@ -90,6 +88,13 @@ class LouvreController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $orderManager->setPriceBillets($billet, $buyer);
+
+            $orderManager->setSessionBuyer($buyer);
+            $orderManager->setSessionBillet($billet);
+
+            $buyer->generateCode()->calcTotal($billet);
 
             $this->session->set('buyer', $buyer);
             $this->session->set('billet', $billet);

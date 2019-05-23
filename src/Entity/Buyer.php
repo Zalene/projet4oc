@@ -24,7 +24,7 @@ class Buyer
     private $nbBillet;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean", nullable=false)
      */
     private $typeBillet;
 
@@ -82,12 +82,12 @@ class Buyer
         return $this;
     }
 
-    public function getTypeBillet(): ?string
+    public function getTypeBillet(): ?bool
     {
-        return $this->typeBillet;
+        return ($this->typeBillet == 1) ? true : false;
     }
 
-    public function setTypeBillet(string $typeBillet): self
+    public function setTypeBillet(bool $typeBillet): self
     {
         $this->typeBillet = $typeBillet;
 
@@ -199,14 +199,16 @@ class Buyer
     /**
      * Calcul le prix total de la commande
      */
-    public function calcTotal(): self
+    public function calcTotal($billet): self
     {
         $total=[0];
-        foreach ($this->getBillets() as $billet)
+
+        foreach ($billet as $visitor)
         {
-            $total[] = $billet->getPrice();
+            $total[] = $visitor->getPrice();
         }
         $this->total = array_sum($total);
+        
         return $this;
     }
 }

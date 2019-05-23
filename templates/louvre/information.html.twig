@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td class="small"><span class="fa fa-clock" aria-hidden="true"></span></td>
-                                <td><strong class="pull-left resume_hours">Heure en fonction du billet</strong></td>
+                                <td><strong class="pull-left resume_hours">{% if buyer.typeBillet == 1 %}9h - 18h{% else %}14h - 18h{% endif %}</strong></td>
                             </tr>
                             <tr>
                                 <td class="small"><span class="fa fa-ticket-alt" aria-hidden="true"></span></td>

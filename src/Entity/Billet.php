@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 class Billet
 {
     /**
+     * @const int
+     */
+    public const REDUCED_PRICE = 10;
+
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -115,12 +120,12 @@ class Billet
         return $this;
     }
 
-    public function getReducedPrice(): ?int
+    public function getReducedPrice(): ?bool
     {
         return $this->reducedPrice;
     }
 
-    public function setReducedPrice(int $reducedPrice): self
+    public function setReducedPrice(bool $reducedPrice): self
     {
         $this->reducedPrice = $reducedPrice;
 
@@ -149,5 +154,10 @@ class Billet
         $this->price = $price;
 
         return $this;
+    }
+
+    public function isReduced()
+    {
+        return $this->reducedPrice;
     }
 }

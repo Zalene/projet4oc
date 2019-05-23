@@ -28,6 +28,22 @@
                 <div class='col-12'>
                     <h3>Votre paiement</h3>
                 </div>
+                {% for i in 1..buyer.nbBillet %}
+                <div>
+                    <table class="table-card">
+                        <tbody>
+                            <tr>
+                                <td><span class="fa fa-ticket-alt"></span></td>
+                                <td><strong>Demi-journée</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nom prénom</strong></td>
+                                <td><strong>18E</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
                 <div class='col-12'>
                     <form action="/charge" method="post" id="payment-form">
                         <div class="form-row">
@@ -42,15 +58,12 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                {#<label for="card-element" class="order-label">Carte de crédit</label>#}
                                 <div id="card-element" class="StripeElement StripeElement--empty"></div>
                             </div>
                         </div>
 
                         <!-- Used to display form errors. -->
                         <div id="card-errors" role="alert" class="text-center"></div>
-                        {#<hr class="mb-4">#}
-                        {#<button class="btn btn-primary btn-lg btn-block" type="submit">Payer votre commande</button>#}
                     </form>
                 </div>
             </div>
@@ -66,7 +79,7 @@
                             </tr>
                             <tr>
                                 <td><span class="fa fa-clock"></span></td>
-                                <td><strong class="resume_hours">Heure en fonction du billet</strong></td>
+                                <td><strong class="resume_hours">{% if buyer.typeBillet == 1 %}9h - 18h{% else %}14h - 18h{% endif %}</strong></td>
                             </tr>
                             <tr>
                                 <td><span class="fa fa-ticket-alt"></span></td>
@@ -77,23 +90,9 @@
                     
                     <button class="btn btn-primary btn-lg btn-block btn-std" name="submit" type="submit">Payer votre commande</button>
 
-                    <h5 class="card-header recap">Votre commande</h5>
-                    <table class="table-card">
-                        <tbody>
-                            <tr>
-                                <td><span class="fa fa-ticket-alt"></span></td>
-                                <td><strong>Demi-journée</strong></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Nom prénom</strong></td>
-                                <td><strong>18E</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
                     <h5 class="card-header recap">Total</h5>
 
-                    <p>50E</p>
+                    <p>{{ buyer.total }} €</p>
 
                 </div>
             </div>
