@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Buyer;
 use App\Entity\Billet;
 
@@ -93,7 +92,7 @@ class LouvreController extends AbstractController
 
             $orderManager->setSessionBuyer($buyer);
             $orderManager->setSessionBillet($billet);
-
+    
             $buyer->generateCode()->calcTotal($billet);
 
             $this->session->set('buyer', $buyer);
@@ -117,25 +116,35 @@ class LouvreController extends AbstractController
         $buyer = $this->session->get('buyer');
         $billet = $this->session->get('billet');
 
-        $form = $this->createForm(BuyerType::class, $buyer);
+        $orderManager->buyerNotFound($buyer);
 
-        $form->handleRequest($request);
+        $nbVisitor=$buyer->getNbBillet();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($request->isMethod('POST')) {
+
+            \Stripe\Stripe::setApiKey('sk_test_d55CK0YrKnWLAufc4Zm7XJqQ00CA62tsAc');
+
+            $token = $_POST['stripeToken'];
+            $charge = \Stripe\Charge::create([
+                'amount' => $buyer->getTotal() * 100,
+                'currency' => 'eur',
+                'description' => 'Musée du Louvre - Réservation',
+                'source' => $token,
+            ]);
 
             $manager->persist($buyer);
-
             foreach ($billet as $visitor) {
                 $manager->persist($visitor);
             }
-
             $manager->flush();
+
+            $token = $request->request->get('stripeToken');
 
             return $this->redirectToRoute("order_step_4");
         }
 
         return $this->render('louvre/checkout.html.twig', [
-            'formStep3' => $form->createView(),
+            'nbVisitor' => $nbVisitor,
             'buyer' => $buyer,
             'billet' => $billet
         ]);
@@ -162,5 +171,4 @@ class LouvreController extends AbstractController
     {   
         return $this->render('louvre/mentions.html.twig');
     }
-
 }

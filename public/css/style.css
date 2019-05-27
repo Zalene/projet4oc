@@ -100,6 +100,14 @@ a:link {
     margin-top: 5px;
 }
 
+.recap-billets {
+    margin-bottom: 30px;
+}
+
+.credit-card {
+    margin-bottom: 30px;
+}
+
 .condition td {
     font-style: italic;
 }

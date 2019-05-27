@@ -2,21 +2,19 @@
 
 namespace App\Services;
 
+use Exception;
+
+
 use App\Entity\Buyer;
 use App\Entity\Billet;
 
 use Doctrine\DBAL\DBALException;
-use Doctrine\ORM\EntityManagerInterface;
+//use Doctrine\ORM\EntityManagerInterface;
 
-use Exception;
-
-use Stripe\Charge;
-use Stripe\Stripe;
-
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+//use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+//use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 class OrderManager {
     /**
@@ -52,13 +50,13 @@ class OrderManager {
      * @param EntityManagerInterface $em
      * @param $stripekey
      */
-    public function __construct(SessionInterface $session, FlashBagInterface $flashBag, UrlGeneratorInterface $route, EntityManagerInterface $em)/*, $stripekey*/
+    public function __construct(SessionInterface $session)/*, FlashBagInterface $flashBag, UrlGeneratorInterface $route , EntityManagerInterface $em , $stripekey */
     {
         $this->session = $session;
-        /*$this->stripekey = $stripekey;*/
-        $this->flashbag = $flashBag;
-        $this->em = $em;
-        $this->route = $route;
+        //$this->stripekey = $stripekey;
+        //$this->flashbag = $flashBag;
+        //$this->em = $em;
+        //$this->route = $route;
     }
 
     /**
@@ -145,5 +143,16 @@ class OrderManager {
     public function getSessionBillet(string $session)
     {
         return $this->session->get($session);
+    }
+
+    /**
+     * @param $buyer
+     */
+    public function buyerNotFound($buyer)
+    {
+        if(!$buyer)
+        {
+            throw new NotFoundHttpException('Désolé mais vous n\'êtes pas autorisé à accéder à cette page');
+        }
     }
 }
