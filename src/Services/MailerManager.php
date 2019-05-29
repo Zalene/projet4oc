@@ -54,7 +54,5 @@ class MailerManager {
             ->setContentType('text/html');
 
         $mailer = $this->mailer->send($message);
-
-        //return $this->render(...);
     }
 }

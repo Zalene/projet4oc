@@ -3,18 +3,10 @@
 namespace App\Services;
 
 use Exception;
-
-
 use App\Entity\Buyer;
 use App\Entity\Billet;
-
-use Doctrine\DBAL\DBALException;
-//use Doctrine\ORM\EntityManagerInterface;
-
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-//use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-//use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 class OrderManager {
     /**
@@ -23,40 +15,12 @@ class OrderManager {
     private $session;
 
     /**
-     * @var FlashBagInterface
-     */
-    private $flashbag;
-
-    /**
-     * @var EntityManagerInterface)
-     */
-    private $em;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $route;
-
-    /**
-     * @var string $stripekey
-     */
-    private $stripekey;
-
-    /**
      * OrderManager constructor.
      * @param SessionInterface $session
-     * @param FlashBagInterface $flashBag
-     * @param UrlGeneratorInterface $route
-     * @param EntityManagerInterface $em
-     * @param $stripekey
      */
-    public function __construct(SessionInterface $session)/*, FlashBagInterface $flashBag, UrlGeneratorInterface $route , EntityManagerInterface $em , $stripekey */
+    public function __construct(SessionInterface $session)
     {
         $this->session = $session;
-        //$this->stripekey = $stripekey;
-        //$this->flashbag = $flashBag;
-        //$this->em = $em;
-        //$this->route = $route;
     }
 
     /**
