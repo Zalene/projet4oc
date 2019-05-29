@@ -73,9 +73,7 @@
                           xml:lang="x-size-24"
                         >
                           <span class="font-roboto">
-                            <font color="#15181f"
-                              >Confirmation de commande</font
-                            >
+                            <font color="#15181f">Confirmation de commande</font>
                           </span>
                         </h1>
                         <p
@@ -84,17 +82,10 @@
                           lang="x-size-15"
                           xml:lang="x-size-15"
                         >
-                          <span class="font-roboto"
-                            ><span style="color:#46474a"
-                              >Nous avons bien reçu votre commande n°{{ buyer.code }} d'un
-                              montant total de
-                              <strong>{{ buyer.total }}€</strong>.<br />Nous vous souhaitons une bonne visite
-                              le
-                              <strong
-                                >{{ buyer.visitDay|date("d/m/Y") }}</strong
-                              ></span
-                            ></span
-                          >
+                          <span class="font-roboto"><span style="color:#46474a">
+                            Nous avons bien reçu votre commande n°{{ buyer.code }} d'un
+                            montant total de <strong>{{ buyer.total }}€</strong>.<br />
+                            Nous vous souhaitons une bonne visite le <strong>{{ buyer.visitDay|date("d/m/Y") }}</strong></span></span>
                         </p>
                       </div>
                     </div>
@@ -116,7 +107,7 @@
                           xml:lang="x-size-15"
                         >
                           <span class="font-roboto">
-                            <strong>Le(s) visiteur(s) </strong>
+                            {% if buyer.nbBillet > 1 %}<strong>Les visiteurs</strong>{% else %}<strong>Le visiteur</strong>{% endif %}
                           </span>
                         </p>
                         <p
@@ -126,9 +117,7 @@
                           xml:lang="x-size-15"
                         >
                           <span class="font-roboto">
-                            {% for b in billet %}
-                            {{ b.name }} {{ b.firstname }} - {%
-                            endfor %}
+                            {% for b in billet %}{{ b.name }} {{ b.firstname }}<br />{% endfor %}
                           </span>
                         </p>
                       </div>

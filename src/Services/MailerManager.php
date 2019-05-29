@@ -42,7 +42,7 @@ class MailerManager {
         $subject = 'Musée du Louvre - Confirmation';
         $from = MailerManager::mail;
         $to = $buyer->getEmail();
-        $body = $this->templating->render('email/registration.html.twig', ['buyer' => $buyer]);
+        $body = $this->templating->render('email/email.html.twig', ['buyer' => $buyer, 'billet' => $billet]);
         $this->sendEmail($subject, $from, $to, $body);
     }
 

@@ -65,6 +65,7 @@
                         <td><strong>{{ b.name }} {{ b.firstname }}</strong></td>
                         <td><strong>{% if buyer.typeBillet == 1 %}Journée{% else %}Demi-journée{% endif %}</strong></td>
                         <td><strong>{{ b.price }} €</strong></td>
+                        {% if b.reducedPrice == 1 %}<td><strong>Tarif Réduit</strong></td>{% endif %}
                     </tr>
                 </div>
                 {% endfor %}
