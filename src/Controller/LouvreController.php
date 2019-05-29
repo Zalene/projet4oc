@@ -8,6 +8,7 @@ use App\Entity\Billet;
 use App\Form\BuyerType;
 use App\Form\BilletType;
 
+
 use App\Services\OrderManager;
 use App\Services\MailerManager;
 
@@ -138,8 +139,10 @@ class LouvreController extends AbstractController
             }
             $manager->flush();
 
-            $token = $request->request->get('stripeToken');
+            $mailerManager->receiptSend();
 
+            $token = $request->request->get('stripeToken');
+            
             return $this->redirectToRoute("order_step_4");
         }
 

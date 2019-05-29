@@ -86,7 +86,7 @@
                         >
                           <span class="font-roboto"
                             ><span style="color:#46474a"
-                              >Nous avons bien reçu votre commande d'un
+                              >Nous avons bien reçu votre commande n°{{ buyer.code }} d'un
                               montant total de
                               <strong>{{ buyer.total }}€</strong>.<br />Nous vous souhaitons une bonne visite
                               le
@@ -126,8 +126,8 @@
                           xml:lang="x-size-15"
                         >
                           <span class="font-roboto">
-                            {% for billet in buyer.billets %}
-                            {{ billet.name }} {{ billet.firstname }} - {%
+                            {% for b in billet %}
+                            {{ b.name }} {{ b.firstname }} - {%
                             endfor %}
                           </span>
                         </p>
