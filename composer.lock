@@ -5056,16 +5056,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v4.2.7",
+            "version": "v4.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "ef70509b7cec68d4c202d08b6d9ab5e66eac3d03"
+                "reference": "32cc317e980da350ea73dde9d64729146048ef20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/ef70509b7cec68d4c202d08b6d9ab5e66eac3d03",
-                "reference": "ef70509b7cec68d4c202d08b6d9ab5e66eac3d03",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/32cc317e980da350ea73dde9d64729146048ef20",
+                "reference": "32cc317e980da350ea73dde9d64729146048ef20",
                 "shasum": ""
             },
             "require": {
@@ -5141,7 +5141,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2019-04-17T15:01:37+00:00"
+            "time": "2019-05-09T13:04:55+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -6385,7 +6385,7 @@
         },
         {
             "name": "symfony/web-server-bundle",
-            "version": "v4.2.8",
+            "version": "v4.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-server-bundle.git",
