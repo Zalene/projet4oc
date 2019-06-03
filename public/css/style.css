@@ -190,3 +190,13 @@ footer p {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+/* DatePicker */
+
+.datepicker table tr td.active.active, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active {
+    background-color: #18BC9C;
+}
+
+.datepicker table tr td.active.active:hover, .datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active:hover {
+    background-color: rgba(24, 188, 156, 0.9);
+}

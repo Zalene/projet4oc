@@ -36,7 +36,10 @@ class BuyerType extends AbstractType
                 ]                            
             ])
             ->add('visitDay', DateType::class, [
-                'format' => 'ddMMyyyy'
+                'widget' => 'single_text',
+                'html5' => 'false',
+                'format' => 'dd/MM/yyyy',
+                'attr' => ['class' => 'datepicker']
              ])
             ->add('email', EmailType::class, [
                 'attr' => ['aria-describedby' => 'basic-addon1']
