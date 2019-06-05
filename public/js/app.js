@@ -42,7 +42,6 @@ $(function () {
         language: "fr",
         multidate: false,
         daysOfWeekDisabled: "1,6",
-        datesDisabled: [ '01/11/2019','25/12/2019' ,'01/05/2020'],
         daysOfWeekHighlighted: "5,6",
         keyboardNavigation: false,
         autoclose: true,

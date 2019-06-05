@@ -7,9 +7,14 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class DayClose extends Constraint
+class HourClose extends Constraint
 {
-    public $message = 'Le musée est fermé le Mardi et le Dimanche.';
+    public $message = 'Le musée est fermé après 19h';
+
+    /**
+     * @Const int
+     */
+    const HOURCLOSE = 19;
 
     public function validatedBy()
     {

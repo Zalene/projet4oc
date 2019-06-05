@@ -27,6 +27,7 @@ class Buyer
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
+     * @ValidAssert\TypeClose(message="Vous ne pouvez pas réserver de billet journée après 14h.")
      */
     private $typeBillet;
 
@@ -47,6 +48,9 @@ class Buyer
 
     /**
      * @ORM\Column(type="datetime")
+     * @ValidAssert\DayClose
+     * @ValidAssert\DayOff
+     * @ValidAssert\HourClose
      */
     private $visitDay;
 
