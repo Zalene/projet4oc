@@ -8,10 +8,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class DayOffValidator extends ConstraintValidator
 {    
-    /**
-     * @param DateTime $visitDay
-     * @param Constraint $constraint
-     */
     public function validate($visitDay, Constraint $constraint)
     {
         if (in_array($visitDay->Format('d/m'), $constraint->dayoff, true))

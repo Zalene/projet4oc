@@ -10,9 +10,4 @@ use Symfony\Component\Validator\Constraint;
 class DayClose extends Constraint
 {
     public $message = 'Le musée est fermé le Mardi et le Dimanche.';
-
-    public function validatedBy()
-    {
-        return \get_class($this).'Validator';
-    }
 }

@@ -9,16 +9,12 @@ use Symfony\Component\Validator\Constraint;
  */
 class TypeClose extends Constraint
 {
-    public $message;
+    public $message = 'Vous ne pouvez plus réserver de billet journée après 14h.';
 
-    /**
-     * @Const int
-     */
     const LIMITHOUR = 14;
 
-    public function validatedBy()
+    public function getTargets()
     {
-        return \get_class($this).'Validator';
+        return self::CLASS_CONSTRAINT;
     }
-
 }

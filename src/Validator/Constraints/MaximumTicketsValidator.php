@@ -1,48 +1,56 @@
 <?php
+
 namespace App\Validator\Constraints;
 
 use App\Entity\Buyer;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Doctrine\ORM\EntityManagerInterface;
 
 class MaximumTicketsValidator extends ConstraintValidator
 {
     /**
-     * Si la date choisie est égale à une date spécifique
-     * @param Buyer $buyer
-     * @param Constraint $constraint
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @var EntityManagerInterface
      */
-    public function validate($buyer, Constraint $constraint)
+    private $em;
+
+    /**
+     * Constructeur MaximumTicketValidator.
+     * @param EntityManagerInterface $em
+     */
+    public function __construct(EntityManagerInterface $em)
     {
-        /* @var MaximumTickets $constraint  */
-        $result = $this->getTotalTickets($buyer->getVisitDay());
-        if($result + $buyer->getNbBillet() >= $constraint::MAXTICKETS)
-        {
-                $this->context->buildViolation($constraint->message)
-                    ->addViolation();
-        }
+        $this->em = $em;
     }
 
     /**
-     * @param \DateTime $visitDay
-     * @param Buyer $buyer
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    private function getTotalTickets($buyer, \DateTime $visitDay)
+    private function getTotalTickets(\DateTime $visitDay)
     {
+        $result = $this->em->getRepository(Buyer::class)->findByVisitDay($visitDay);
+
         $total=[0];
 
-        foreach ($buyer as $tickets)
+        foreach ($result as $tickets)
         {
             $total[] = $tickets->getNbBillet();
         }
-        $this->total = array_sum($total);
+        $totalBilletDay = $this->total = array_sum($total);
 
-        dump($total);
-        die;
-        
-        return $this;
+        return $totalBilletDay;
+    }
+
+    public function validate($visitDay, Constraint $constraint)
+    {
+        $result = $this->getTotalTickets($visitDay->getVisitDay());
+
+        if($result + $visitDay->getNbBillet() >= $constraint::MAXTICKETS)
+        {
+                $this->context->buildViolation($constraint->message)
+                    ->atPath('visitDay')
+                    ->addViolation();
+        }
     }
 }

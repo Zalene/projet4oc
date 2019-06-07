@@ -8,10 +8,6 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class DayCloseValidator extends ConstraintValidator
 {    
-    /**
-     * @param DateTime $visitDay
-     * @param Constraint $constraint
-     */
     public function validate($visitDay, Constraint $constraint)
     {
         if (in_array($visitDay->Format('D'),['Mon', 'Sat'], true))

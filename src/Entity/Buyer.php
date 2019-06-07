@@ -10,6 +10,8 @@ use App\Validator\Constraints as ValidAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BuyerRepository")
+ * @ValidAssert\TypeClose
+ * @ValidAssert\MaximumTickets
  */
 class Buyer
 {
@@ -27,7 +29,6 @@ class Buyer
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
-     * @ValidAssert\TypeClose(message="Vous ne pouvez pas réserver de billet journée après 14h.")
      */
     private $typeBillet;
 
