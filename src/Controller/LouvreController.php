@@ -107,6 +107,10 @@ class LouvreController extends AbstractController
         $buyer = $this->session->get('buyer');
         $billet = $this->session->get('billet');
 
+        if (!$buyer) {
+            return $this->redirectToRoute('order_step_1');
+        }
+
         $orderManager->buyerNotFound($buyer);
 
         $nbVisitor=$buyer->getNbBillet();
@@ -150,6 +154,11 @@ class LouvreController extends AbstractController
     {   
         $buyer = $this->session->get('buyer');
         $billet = $this->session->get('billet');
+
+        if (!$buyer) {
+            return $this->redirectToRoute('order_step_1');
+        }
+        
 
         return $this->render('louvre/confirmation.html.twig', [
             'buyer' => $buyer,
