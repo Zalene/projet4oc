@@ -3,9 +3,10 @@
 namespace App\Tests;
 
 use App\Entity\Billet;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AgeTest extends WebTestCase
+use PHPUnit\Framework\TestCase;
+
+class AgeTest extends TestCase
 {
     /**
      * Age du visiteur lors date de la visite
