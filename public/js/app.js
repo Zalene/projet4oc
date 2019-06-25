@@ -1,30 +1,30 @@
 $(function () {
 
-    var a = '#back-to-top';
+    var a = "#back-to-top";
 
     if ($(a).length) {
         var scrollTrigger = 100, // px
             backToTop = function () {
                 var scrollTop = $(window).scrollTop();
                 if (scrollTop > scrollTrigger) {
-                    $('#back-to-top').addClass('show');
+                    $("#back-to-top").addClass("show");
                 } else {
-                    $('#back-to-top').removeClass('show');
+                    $("#back-to-top").removeClass("show");
                 }
             };
         backToTop();
-        $(window).on('scroll', function () {
+        $(window).on("scroll", function () {
             backToTop();
         });
-        $(a).on('click', function (e) {
+        $(a).on("click", function (e) {
             e.preventDefault();
-            $('html,body').animate({
+            $("html,body").animate({
                 scrollTop: 0
             }, 700);
         });
     }
 
-    $.fn.datepicker.dates['fr'] = {
+    $.fn.datepicker.dates["fr"] = {
         days: ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
         daysShort: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
         daysMin: ["Lu", "Ma", "Me", "Je", "Ve", "Sa", "Di"],
@@ -36,7 +36,7 @@ $(function () {
     };
     
 
-    $('.datepicker').datepicker({
+    $(".datepicker").datepicker({
         format: "dd/mm/yyyy",
         startDate: "new Date()",
         language: "fr",
@@ -49,7 +49,7 @@ $(function () {
         toggleActive: true
     });
 
-    var datepickercl = '.datepicker-tickets';
+    var datepickercl = ".datepicker-tickets";
 
     $(datepickercl).datepicker({
         format: "dd/mm/yyyy",
@@ -59,7 +59,7 @@ $(function () {
         autoclose: true,
         toggleActive: true,
         endDate: "now",
-        startView: 'decades'
+        startView: "decades"
     });
 
 });
