@@ -49,18 +49,18 @@
                         <!-- Used to display form errors. -->
                         <div id="card-errors" role="alert" class="text-center"></div>                    
                 </div>
-                <div class='col-12'>
+                <div class='col-12 title-billet-block'>
                     <h5>Commande n° {{ buyer.code }}</h5>
                     
                 </div>
 
                 {% for b in billet %}
-                <div class='col-12'>
+                <div class='col-12 billet-block'>
                     <tr>
-                        <td><strong>Billet n°{{ loop.index }}</strong></td>
-                        <td><strong>{{ b.name }} {{ b.firstname }}</strong></td>
-                        <td><strong>{% if buyer.typeBillet == 1 %}Journée{% else %}Demi-journée{% endif %}</strong></td>
-                        <td><strong>{{ b.price }} €</strong></td>
+                        <td><strong>Billet n°{{ loop.index }} : </strong></td>
+                        <td><strong>{{ b.name }} {{ b.firstname }} </strong></td>
+                        <td><strong> a un ticket {% if buyer.typeBillet == 1 %}Journée{% else %}Demi-journée{% endif %}</strong></td>
+                        <td><strong> au prix de {{ b.price }} €</strong></td>
                         {% if b.reducedPrice == 1 %}<td><strong>Tarif Réduit</strong></td>{% endif %}
                     </tr>
                 </div>
