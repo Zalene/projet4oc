@@ -5,6 +5,7 @@ namespace App\Services;
 use Exception;
 use App\Entity\Buyer;
 use App\Entity\Billet;
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -14,13 +15,24 @@ class OrderManager {
      */
     private $session;
 
+    private $tarifBebe;
+    private $tarifNormal;
+    private $tarifEnfant;
+    private $tarifSenior;
+    private $tarifReduit;
+
     /**
      * OrderManager constructor.
      * @param SessionInterface $session
      */
-    public function __construct(SessionInterface $session)
+    public function __construct(SessionInterface $session, $tarifBebe, $tarifEnfant, $tarifNormal, $tarifSenior, $tarifReduit)
     {
         $this->session = $session;
+        $this->tarifBebe = $tarifBebe;
+        $this->tarifNormal = $tarifNormal;
+        $this->tarifEnfant = $tarifEnfant;
+        $this->tarifSenior = $tarifSenior;
+        $this->tarifReduit = $tarifReduit;
     }
 
     /**
@@ -33,7 +45,7 @@ class OrderManager {
             // Réduction
             if($billet->isReduced())
             {
-                $price = Billet::REDUCED_PRICE;
+                $price = $this->tarifReduit;
             } else {
                 $price = $this->getPriceRange($billet->getAge($buyer->getVisitDay()));
             }
@@ -47,7 +59,7 @@ class OrderManager {
             $billet->setBuyer($buyer);
         }
     }
-
+    
     /**
      * @param $billet
      * @return int
@@ -56,16 +68,16 @@ class OrderManager {
     {
         switch ($billet) {
             case $billet > 0 && $billet <= 4 :
-                $price = 0;
+                $price = $this->tarifBebe;
                 break;
             case $billet > 4 && $billet <= 12:
-                $price = 8;
+                $price = $this->tarifEnfant;
                 break;
             case $billet >= 60:
-                $price = 12;
+                $price = $this->tarifSenior;
                 break;
             default:
-                $price = 16;
+                $price = $this->tarifNormal;
                 break;
         }
         return $price;

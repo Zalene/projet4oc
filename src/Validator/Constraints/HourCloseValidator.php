@@ -15,10 +15,8 @@ class HourCloseValidator extends ConstraintValidator
         
         if($date == $visitDay->Format('d/m/Y'))
         {   
-            /* A ENLEVER UNE FOIS EN PROD EN CONFIG LE PHP.INI DU SERVEUR DIRECTEMENT */
             $timezone  = +2; //(GMT +2:00) (France)
             $date = date('H', time() + 3600*($timezone+date("I")));
-            /******/
 
             if($date >= $constraint::HOURCLOSE)
             {

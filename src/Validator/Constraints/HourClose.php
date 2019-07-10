@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class HourClose extends Constraint
 {
-    public $message = 'Le musée est fermé après 19h.';
+    public $message = 'Le musée est fermé après 18h.';
 
-    const HOURCLOSE = 19;
+    const HOURCLOSE = 18;
 }

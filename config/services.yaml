@@ -5,6 +5,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    tarifBebe: 0
+    tarifEnfant: 8
+    tarifNormal: 16
+    tarifSenior: 12
+    tarifReduit: 10
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +31,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Services\OrderManager:
+        arguments:
+            $tarifBebe: '%tarifBebe%'
+            $tarifEnfant: '%tarifEnfant%'
+            $tarifNormal: '%tarifNormal%'
+            $tarifSenior: '%tarifSenior%'
+            $tarifReduit: '%tarifReduit%'

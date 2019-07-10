@@ -12,11 +12,6 @@ use App\Validator\Constraints as ValidAssert;
 class Billet
 {
     /**
-     * @const int
-     */
-    public const REDUCED_PRICE = 10;
-
-    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")

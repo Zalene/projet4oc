@@ -9,5 +9,5 @@ use Symfony\Component\Validator\Constraint;
  */
 class DayClose extends Constraint
 {
-    public $message = 'Le musée est fermé le Mardi et le Dimanche.';
+    public $message = 'Aucune réservation possible le Mardi et le Dimanche.';
 }
